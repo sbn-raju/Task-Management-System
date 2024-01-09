@@ -1,0 +1,48 @@
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>TO-DO</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <nav class="navbar">
+            <h1>To-Do App</h1>
+            <h4>Tommorow never Comes</h4>
+        </nav>
+        <div class="main-container">
+            <div class="left-container">
+                <form action="/task" method="post">
+                    <input type="text" name="title" class="Title" placeholder="Title">
+                    <textarea name="des" cols="30" rows="10" class="Des" placeholder="Description"></textarea>
+                    <select name="priority" id="select">
+                        <option value=""></option>
+                        <option value="High">High</option>
+                        <option value="Medium">Medium</option>
+                        <option value="Low">Low</option>
+                    </select>
+                    <button type="submit">Submit</button>
+                </form>
+            </div>
+            <div class="right-container">
+                <div class="task-container">
+                    <% for(let task of displayTask) {%>
+                        <div class="tasks">
+                        <h2 class="head-title"><b>Title:</b><%= task.title %></h2>
+                        <br>
+                        <p class="head-des"><b>Description:</b><%= task.des %></p>
+                        <br>
+                        <p class="head-priority"><b>Priority:</b><%= task.priority %></p>
+                        <br>
+                        <form method="post" action="/task/<%= task._id %>?_method=DELETE" >
+                            <button type="submit" class="btn">Done!</button>
+                        </form>
+                        </div>
+                    <% } %>
+                </div>
+            </div>
+        </div>
+        <script src="app.js"></script>
+    </body>
+    </html>
